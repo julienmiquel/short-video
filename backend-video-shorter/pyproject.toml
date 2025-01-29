@@ -4,7 +4,7 @@ version = "0.1.0"
 description = ""
 authors = ["Julien MIQUEL <julienmiquel@google.com>"]
 readme = "README.md"
-packages = [{include = "backend_video_shorter"}]
+packages = [{include = "backend"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"

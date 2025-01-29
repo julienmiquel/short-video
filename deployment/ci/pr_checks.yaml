@@ -5,7 +5,7 @@ steps:
     args:
       - "-c"
       - |
-        pip install poetry==1.8.3 --user && python -m poetry install
+        cd backend-video-shorter && pip install poetry==1.8.3 --user && python -m poetry install
 
   - name: "python:3.10"
     id: unit-tests
