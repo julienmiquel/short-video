@@ -26,40 +26,40 @@ resource "google_cloudbuild_trigger" "pr_checks" {
 }
 
 # b. Create CD pipeline trigger
-# resource "google_cloudbuild_trigger" "cd_pipeline" {
-#   name            = "cd-pipeline"
-#   project         = var.cicd_runner_project_id
-#   location        = var.region
-#   service_account = resource.google_service_account.cicd_runner_sa.id
-#   description     = "Trigger for CD pipeline"
+resource "google_cloudbuild_trigger" "cd_pipeline" {
+  name            = "cd-pipeline"
+  project         = var.cicd_runner_project_id
+  location        = var.region
+  service_account = resource.google_service_account.cicd_runner_sa.id
+  description     = "Trigger for CD pipeline"
 
-#   repository_event_config {
-#     repository = "projects/${var.cicd_runner_project_id}/locations/${var.region}/connections/${var.host_connection_name}/repositories/${var.repository_name}"
-#     push {
-#       branch = "main"
-#     }
-#   }
+  repository_event_config {
+    repository = "projects/${var.cicd_runner_project_id}/locations/${var.region}/connections/${var.host_connection_name}/repositories/${var.repository_name}"
+    push {
+      branch = "main"
+    }
+  }
 
-#   filename = "deployment/cd/staging.yaml"
-#   included_files = [
-#     "backend/**",
-#     "frontend/**",
-#     "data_processing/**",
-#     "tests/**",
-#     "deployment/**",
-#     "poetry.lock"
-#   ]
-#   substitutions = {
-#     _STAGING_PROJECT_ID            = var.staging_project_id
-#     _BUCKET_NAME_LOAD_TEST_RESULTS = resource.google_storage_bucket.bucket_load_test_results.name
-#     _ARTIFACT_REGISTRY_REPO_NAME   = var.artifact_registry_repo_name
-#     _CLOUD_RUN_APP_SA_NAME         = var.cloud_run_app_sa_name
-#     _REGION                        = var.region
-#     # Your other CD Pipeline substitutions
-#   }
-#   depends_on = [resource.google_project_service.cicd_services, resource.google_project_service.shared_services]
+  filename = "deployment/cd/staging.yaml"
+  included_files = [
+    "backend/**",
+    "frontend/**",
+    "data_processing/**",
+    "tests/**",
+    "deployment/**",
+    "poetry.lock"
+  ]
+  substitutions = {
+    _STAGING_PROJECT_ID            = var.staging_project_id
+    _BUCKET_NAME_LOAD_TEST_RESULTS = resource.google_storage_bucket.bucket_load_test_results.name
+    _ARTIFACT_REGISTRY_REPO_NAME   = var.artifact_registry_repo_name
+    _CLOUD_RUN_APP_SA_NAME         = var.cloud_run_app_sa_name
+    _REGION                        = var.region
+    # Your other CD Pipeline substitutions
+  }
+  depends_on = [resource.google_project_service.cicd_services, resource.google_project_service.shared_services]
 
-# }
+}
 
 # # c. Create Deploy to production trigger
 # resource "google_cloudbuild_trigger" "deploy_to_prod_pipeline" {
