@@ -13,7 +13,7 @@ steps:
     args:
       - "-c"
       - |
-        python -m poetry run pytest tests/unit
+        cd backend-video-shorter && python -m poetry run pytest tests/unit
 
   # Run integration tests
   - name: "python:3.10"
@@ -22,6 +22,6 @@ steps:
     args:
       - "-c"
       - |
-        python -m poetry run pytest tests/integration
+        cd backend-video-shorter && python -m poetry run pytest tests/integration
 options:
   logging: CLOUD_LOGGING_ONLY

@@ -2,9 +2,9 @@ from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
 
-from backend_video_shorter.models.clip_request import ClipRequest
-from backend_video_shorter.clip_creator import ClipCreator
-from backend_video_shorter.main import app
+from backend.models.clip_request import ClipRequest
+from backend.clip_creator import ClipCreator
+from backend.main import app
 
 client = TestClient(app)
 
