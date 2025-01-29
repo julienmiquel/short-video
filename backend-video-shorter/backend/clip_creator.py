@@ -55,15 +55,11 @@ class ClipCreator:
             return response
             
         except Exception as e:
-            #raise HTTPException(status_code=404, detail=f"Error creating clip: {e}")
-            print(e)
-            raise e
-
+            #TODO: Add logging
+            raise HTTPException(status_code=404, detail=f"Error creating clip: {e}")
+            
 
     async def generate_highlights(self, data: ClipRequest, model = "gemini-1.5-pro-002") -> ClipResponse: 
-
-
-        # model = "gemini-2.0-flash-exp"
 
         youtube_url = data.youtube_url
 
