@@ -28,10 +28,9 @@ async def generate_highlights(request: Request):
 @app.post("/create_clip", response_model=ClipResponse) # Add response model
 async def create_clip(request: Request):
     try:
-        return JSONResponse(**await request.json())
-        # data = ClipRequest(**await request.json())  # Validate request data
-        # clip_path = await clip_creator.create_clip(data)
-        # return ClipResponse(message="Clip created successfully", clip_path=clip_path) # Create response object
+        data = ClipRequest(**await request.json())  # Validate request data
+        clip_path = await clip_creator.create_clip(data)
+        return ClipResponse(message="Clip created successfully", clip_path=clip_path) # Create response object
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
     except Exception as e:
