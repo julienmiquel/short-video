@@ -7,14 +7,15 @@ import json
 from google import genai
 from google.genai import types
 
+from .config import settings # Added import
 from .models.clip_request import ClipRequest  
 from .models.clip_response import ClipResponse, Highlights, Highlight
 
 class ClipCreator:
-    def __init__(self, download_dir="downloads", output_dir="clips", ffmpeg_path="ffmpeg"):
-        self.download_dir = os.environ.get("DOWNLOAD_DIR", download_dir)
-        self.output_dir = os.environ.get("OUTPUT_DIR", output_dir)
-        self.ffmpeg_path = os.environ.get("FFMPEG_PATH", ffmpeg_path)
+    def __init__(self): # Removed default parameters
+        self.download_dir = settings.DOWNLOAD_DIR # Use settings
+        self.output_dir = settings.OUTPUT_DIR   # Use settings
+        self.ffmpeg_path = settings.FFMPEG_PATH  # Use settings
         os.makedirs(self.download_dir, exist_ok=True)
         os.makedirs(self.output_dir, exist_ok=True)
 
@@ -63,10 +64,11 @@ class ClipCreator:
 
         youtube_url = data.youtube_url
 
+        # Removed direct os.environ.get calls for project_id and location
         client = genai.Client(
             vertexai=True,
-            project="ml-demo-384110",
-            location="us-central1"
+            project=settings.VERTEX_AI_PROJECT_ID, # Use settings
+            location=settings.VERTEX_AI_LOCATION  # Use settings
         )
 
         video1 = types.Part.from_uri(
