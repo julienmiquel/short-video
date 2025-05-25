@@ -1,0 +1,32 @@
+.App-header { /* Style moved from App.css to be component-specific */
+  background-color: #282c34;
+  padding: 20px;
+  color: white;
+  text-align: center;
+}
+
+.App-header h1 {
+  margin: 0 0 10px 0;
+}
+
+.App-header nav { /* Added new rules */
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping */
+  justify-content: center;
+  gap: 10px; /* Add some gap between links */
+}
+
+.App-header nav a {
+  color: white;
+  margin: 0 15px; /* Original margin, gap might make this redundant or adjustable */
+  text-decoration: none;
+}
+
+.App-header nav a:hover {
+  text-decoration: underline;
+}
+
+.user-info {
+  margin-top: 10px;
+  font-size: 0.8em;
+}

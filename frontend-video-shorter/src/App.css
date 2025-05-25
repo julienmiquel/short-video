@@ -1,0 +1,27 @@
+.App {
+  text-align: center; /* This was already there, good for overall centering of inline/block elements */
+}
+
+.App-content {
+  padding: 20px;
+  max-width: 960px; /* Max width for main content area */
+  margin: 0 auto; /* Center main content */
+}
+
+/* Basic responsive typography for headings */
+h1, h2, h3 {
+  color: #333;
+}
+
+h1 { font-size: 2em; margin-bottom: 0.5em; }
+h2 { font-size: 1.5em; margin-bottom: 0.5em; }
+h3 { font-size: 1.2em; margin-bottom: 0.5em; }
+
+@media (max-width: 768px) {
+  h1 { font-size: 1.8em; }
+  h2 { font-size: 1.3em; }
+  h3 { font-size: 1.1em; }
+  .App-content {
+    padding: 10px;
+  }
+}

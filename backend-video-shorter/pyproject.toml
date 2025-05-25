@@ -9,11 +9,12 @@ packages = [{include = "backend"}]
 [tool.poetry.dependencies]
 python = "^3.10"
 fastapi = "^0.115.7"
+google-auth = "^2.29.0" # Added this line
+google-cloud-aiplatform = "^1.78.0"
 google-cloud-logging = "^3.11.3"
 google-genai = "^0.6.0"
-google-cloud-aiplatform = "^1.78.0"
-uvicorn = "^0.34.0"
 pytube = "^15.0.0"
+uvicorn = "^0.34.0"
 
 
 [tool.poetry.group.dev.dependencies]
